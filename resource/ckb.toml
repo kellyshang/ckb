@@ -86,3 +86,7 @@ args = []
 
 [script]
 runner = "Assembly"
+
+[store]
+header_cache_size       = 4096
+cell_output_cache_size  = 128

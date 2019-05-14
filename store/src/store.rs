@@ -21,7 +21,7 @@ use ckb_core::EpochNumber;
 use ckb_db::{Col, DbBatch, Error, KeyValueDB};
 use lru_cache::LruCache;
 use numext_fixed_hash::H256;
-use serde::{Deserialize, Serialize};
+use serde_derive::{Deserialize, Serialize};
 use std::ops::Range;
 use std::sync::Mutex;
 
@@ -387,7 +387,7 @@ impl<B: DbBatch> DefaultStoreBatch<B> {
         self.inner.insert(col, key, value)
     }
 
-    fn insert_serialize<T: Serialize + ?Sized>(
+    fn insert_serialize<T: serde::ser::Serialize + ?Sized>(
         &mut self,
         col: Col,
         key: &[u8],

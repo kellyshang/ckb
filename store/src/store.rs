@@ -364,7 +364,8 @@ impl<T: KeyValueDB> ChainStore for ChainKVStore<T> {
                         .map(|ref serialized_cell_output| {
                             let cell_output: CellOutput = deserialize(serialized_cell_output)
                                 .expect("flat deserialize cell output should be ok");
-                            let mut cell_output_cache_unlocked = CELL_OUTPUT_CACHE
+                            let mut cell_output_cache_unlocked = self
+                                .cell_output_cache
                                 .lock()
                                 .expect("poisoned cell output cache lock");
                             cell_output_cache_unlocked
